@@ -18,6 +18,7 @@ public class StartRoute implements RouteInterface {
     @Override
     public void createContext(HttpServer server) {
         server.createContext("/api/game/start",exchange -> {
+            System.out.println("Entering game");
             final String requestMethod = exchange.getRequestMethod().toUpperCase();
             if ("POST".equals(requestMethod)) {
                 InputStream body = exchange.getRequestBody();
