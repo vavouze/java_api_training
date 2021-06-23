@@ -15,7 +15,7 @@ public class InitServer
 {
     private final int port;
 
-    Logger logger
+    final Logger logger
         = Logger.getLogger(
         InitServer.class.getName());
 
@@ -24,14 +24,18 @@ public class InitServer
         this.port = port;
     }
 
-    public void launchServer() throws Exception
+    public int getPort() {
+        return port;
+    }
+
+    public void launchServer(HttpServer server) throws Exception
     {
-        final HttpServer server = HttpServer.create(new InetSocketAddress(this.port), 0);
         server.setExecutor(Executors.newFixedThreadPool(1));
 
         List<RouteInterface> routeList = new ArrayList<>();
         routeList.add(new PingRoute());
         routeList.add(new StartRoute());
+        routeList.add(new FireRoute());
 
         for (RouteInterface route: routeList)
         {
@@ -50,8 +54,6 @@ public class InitServer
             .setHeader("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"1\", \"url\":\"http://localhost:" + this.port + "\", \"message\":\"hello\"}"))
             .build();
-        HttpResponse<String> servResponse = client.send(requetePost, HttpResponse.BodyHandlers.ofString());
-        logger.info("contacted server: " + adversaryUrl);
-        System.out.println(servResponse);
+        client.send(requetePost, HttpResponse.BodyHandlers.ofString());
     }
 }
