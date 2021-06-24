@@ -1,7 +1,9 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.server;
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.route.FireRoute;
+import fr.lernejo.navy_battle.route.PingRoute;
+import fr.lernejo.navy_battle.route.StartRoute;
 
-import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;

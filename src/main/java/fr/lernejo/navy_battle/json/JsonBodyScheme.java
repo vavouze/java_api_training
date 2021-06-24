@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.json;
 
 public class JsonBodyScheme {
     private final String id;

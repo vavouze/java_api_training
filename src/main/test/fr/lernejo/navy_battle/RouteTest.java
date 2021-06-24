@@ -1,12 +1,11 @@
 package fr.lernejo.navy_battle;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.route.PingRoute;
+import fr.lernejo.navy_battle.server.InitServer;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RouteTest {
 

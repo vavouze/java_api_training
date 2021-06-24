@@ -1,8 +1,11 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.route;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.json.JsonResponseScheme;
+import fr.lernejo.navy_battle.server.RouteInterface;
+import fr.lernejo.navy_battle.ShipState;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -10,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FireRoute implements RouteInterface{
+public class FireRoute implements RouteInterface {
 
     @Override
     public void createContext(HttpServer server)

@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.route;
 
 import com.sun.net.httpserver.HttpExchange;
 

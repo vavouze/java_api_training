@@ -1,6 +1,7 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.route;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.server.RouteInterface;
 
 import java.io.OutputStream;
 
