@@ -4,5 +4,5 @@ import com.sun.net.httpserver.HttpServer;
 
 public interface RouteInterface
 {
-    void createContext(HttpServer server);
+    void createContext(HttpServer server,InitServer initserv);
 }

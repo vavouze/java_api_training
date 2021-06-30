@@ -1,9 +1,16 @@
 package fr.lernejo.navy_battle.route;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
+import fr.lernejo.navy_battle.server.InitServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class Route404
 {
@@ -21,6 +28,18 @@ public class Route404
         exchange.sendResponseHeaders(400,response.length());
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(response.getBytes());
+        }
+    }
+
+    public void Shoot(InitServer initServer) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest requeteGet = HttpRequest.newBuilder().GET().uri(URI.create(initServer.getAdversary().get(0) +"/api/game/fire?cell="+initServer.getRandomCase())).build();
+        HttpResponse<String> servResponse = client.send(requeteGet, HttpResponse.BodyHandlers.ofString());
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode actualObj = mapper.readTree(servResponse.body());
+        if (!actualObj.get("shipLeft").asBoolean()){
+            System.out.println("vous avez gagné");
+            System.exit(0);
         }
     }
 }

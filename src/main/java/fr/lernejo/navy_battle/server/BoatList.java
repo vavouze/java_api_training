@@ -26,7 +26,6 @@ public class BoatList
             }while (!free);
             boolean test = false;
             for (Direction direction:Direction.values()) {
-                System.out.println("here");
                 test = setTrailingCases(randomColumn,randomLine,boat,direction);
                 if (test){break;}
             }
@@ -35,13 +34,11 @@ public class BoatList
     public boolean setTrailingCases(String column, String line, Map.Entry<Boat, Integer> boat, Direction direction) {
         if (direction == Direction.HAUT || direction == Direction.BAS) {
             List<String> cells = addCellToBoat(this.column,Arrays.asList(this.column).indexOf(column),boat.getValue(),direction.coef,column,line,true);
-            System.out.println(cells);
             if (cells.isEmpty()){return false;}else {
                 for (String cell: cells) {boat.getKey().addToList(cell);}
             }
         }else {
             List<String> cells = addCellToBoat(this.line,Arrays.asList(this.line).indexOf(line),boat.getValue(),direction.coef,column,line,false);
-            System.out.println(cells);
             if (cells.isEmpty()){return false;}else {
                 boat.getKey().addToList(column+line);
                 for (String cell: cells) {boat.getKey().addToList(cell);}
@@ -60,8 +57,7 @@ public class BoatList
         }
         return tmp;
     }
-    public boolean isInBounds(int start, int length,int op)
-    {
+    public boolean isInBounds(int start, int length,int op) {
         if (op > 0){return start + length < 10;}else {return start - length > -1;}
 
     }
