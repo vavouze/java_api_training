@@ -61,7 +61,7 @@ public class InitServer
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest requetePost = HttpRequest.newBuilder()
             .uri(URI.create(adversaryUrl + "/api/game/start"))
-            .setHeader("Accept", "application/json")
+            .setHeader("accept", "application/json")
             .setHeader("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"1\", \"url\":\"http://localhost:" + this.port + "\", \"message\":\"hello\"}"))
             .build();

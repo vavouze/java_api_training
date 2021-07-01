@@ -3,16 +3,16 @@ package fr.lernejo.navy_battle.json;
 import fr.lernejo.navy_battle.ShipState;
 
 public class JsonResponseScheme {
-    private final ShipState consequence;
+    private final String consequence;
     private final boolean shipLeft;
 
-    public JsonResponseScheme(ShipState consequence, boolean shipLeft) {
+    public JsonResponseScheme(String consequence, boolean shipLeft) {
         this.consequence = consequence;
         this.shipLeft = shipLeft;
     }
 
     //getter
-    public ShipState getConsequence() {
+    public String getConsequence() {
         return consequence;
     }
     public boolean getShipLeft() {
