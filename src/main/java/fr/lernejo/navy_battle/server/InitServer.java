@@ -74,6 +74,7 @@ public class InitServer
         return BoatList;
     }
     public String getRandomCase(){
+        this.alreadyShotAt.add("");
         String result = "";
         while (this.alreadyShotAt.contains(result)){
             int rndCol = new Random().nextInt(this.column.length);
