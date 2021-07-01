@@ -33,13 +33,12 @@ public class Route404
 
     public void Shoot(InitServer initServer) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest requeteGet = HttpRequest.newBuilder().GET().uri(URI.create(initServer.getAdversary().get(0) +"/api/game/fire?cell="+initServer.getRandomCase())).build();
+        HttpRequest requeteGet = HttpRequest.newBuilder().GET().uri(URI.create(initServer.getAdversary().get(0) +"/api/game/fire?cell="+initServer.getRandomCase())).setHeader("Accept", "application/json").setHeader("Content-Type", "application/json").build();
         HttpResponse<String> servResponse = client.send(requeteGet, HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualObj = mapper.readTree(servResponse.body());
         if (!actualObj.get("shipLeft").asBoolean()){
             System.out.println("vous avez gagné");
-            System.exit(0);
         }
     }
 }

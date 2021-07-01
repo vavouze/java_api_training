@@ -27,7 +27,7 @@ public class FireRoute implements RouteInterface {
                 if (cellParams == null) {
                     new Route404().return400(exchange);
                 }
-                try {if (initServer.getBoatList().getBoatList().size() > 0 ){checkBoatList(exchange,initServer.getBoatList(),cellParams,initServer);}} catch (InterruptedException e) {
+                try {if (initServer.getBoatList().getBoatList().size() > 0 ){ checkBoatList(exchange,initServer.getBoatList(),cellParams,initServer);}} catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }else {
@@ -59,11 +59,11 @@ public class FireRoute implements RouteInterface {
                     state = ShipState.SUNK;
                     boatlist.getBoatList().remove(entry.getKey());
                 }else { state = ShipState.HIT; }
-                break;
-            }
-        }
+                break; } }
         sendJsonResponse(exchange,!boatlist.getBoatList().isEmpty(),state);
-        new Route404().Shoot(initServer);}
+        if (boatlist.getBoatList().size() > 0 ){
+            new Route404().Shoot(initServer);
+        }else {System.out.println("vous avez perdu");}}
 
     public void sendJsonResponse(HttpExchange exchange,boolean shipleft,ShipState state) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
@@ -74,9 +74,6 @@ public class FireRoute implements RouteInterface {
         String jsonString = mapper.writeValueAsString(response);
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(jsonString.getBytes());
-        }
-        if (!shipleft){
-            System.exit(0);
         }
     }
 }
