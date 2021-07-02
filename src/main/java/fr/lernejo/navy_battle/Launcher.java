@@ -18,9 +18,9 @@ public class Launcher
             BoatList.put(new Boat(new ArrayList<>(),"destroyer_2"),3);
             BoatList.put(new Boat(new ArrayList<>(),"torpilleur"),2);
             BoatList listOfBoats = new BoatList(BoatList);
-            listOfBoats.initiateAllboats();
             InitServer initialServer = new InitServer(Integer.parseInt(args[0]), new ArrayList<>(),listOfBoats);
             initialServer.launchServer(HttpServer.create(new InetSocketAddress(initialServer.getPort()), 0));
+            listOfBoats.initiateAllboats();
             if (args.length > 1) {
                 initialServer.getAdversary().add(args[1]);
                 initialServer.sendRequest(initialServer.getAdversary().get(0));
