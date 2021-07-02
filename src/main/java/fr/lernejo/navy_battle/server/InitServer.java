@@ -57,7 +57,7 @@ public class InitServer
         logger.info(" Server started on port "+ this.port);
     }
 
-    public void sendRequest(String adversaryUrl) throws Exception {
+    public void sendRequest(String adversaryUrl,long startTime) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest requetePost = HttpRequest.newBuilder()
             .uri(URI.create(adversaryUrl + "/api/game/start"))
@@ -65,9 +65,8 @@ public class InitServer
             .setHeader("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"1\", \"url\":\"http://localhost:" + this.port + "\", \"message\":\"hello\"}"))
             .build();
-        HttpResponse<String> servResponse = client.send(requetePost, HttpResponse.BodyHandlers.ofString());
-        logger.info("contacted server: " + adversaryUrl);
-        System.out.println(servResponse);
+        client.send(requetePost, HttpResponse.BodyHandlers.ofString());
+        System.out.println((System.nanoTime() - startTime)/1000000);
     }
 
     public BoatList getBoatList() {
@@ -82,7 +81,6 @@ public class InitServer
             result = this.column[rndCol] + this.line[rndLine];
         }
         this.alreadyShotAt.add(result);
-        System.out.println(result);
         return result;
     }
 }

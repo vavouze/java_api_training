@@ -68,7 +68,6 @@ public class FireRoute implements RouteInterface {
     public void sendJsonResponse(HttpExchange exchange,boolean shipleft,ShipState state) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
         exchange.sendResponseHeaders(202, 0);
-        System.out.println("state: " + state.state + " Shipleft: " +shipleft);
         JsonResponseScheme response = new JsonResponseScheme(state.state,shipleft);
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(response);

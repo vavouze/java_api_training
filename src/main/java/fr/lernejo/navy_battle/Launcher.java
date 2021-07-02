@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Launcher
 {
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         try {HashMap<Boat,Integer> BoatList = new HashMap<>();
             BoatList.put(new Boat(new ArrayList<>(),"porte-avion"),5);
             BoatList.put(new Boat(new ArrayList<>(),"croiseur"),4);
@@ -23,7 +24,6 @@ public class Launcher
             listOfBoats.initiateAllboats();
             if (args.length > 1) {
                 initialServer.getAdversary().add(args[1]);
-                initialServer.sendRequest(initialServer.getAdversary().get(0));
-            }} catch (Exception e) {
+                initialServer.sendRequest(initialServer.getAdversary().get(0),startTime); }} catch (Exception e) {
             e.printStackTrace(); }}
 }

@@ -38,7 +38,7 @@ public class StartRoute implements RouteInterface {
     public void sendJsonResponse(HttpExchange exchange, HttpServer server) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
         exchange.sendResponseHeaders(202, 0);
-        JsonBodyScheme response = new JsonBodyScheme("2aca7611-0ae4-49f3-bf63-75bef4769028","http://localhost:"+server.getAddress().getPort(),"May the best code win");
+        JsonBodyScheme response = new JsonBodyScheme("2","http://localhost:"+server.getAddress().getPort(),"May the best code win");
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(response);
         try (OutputStream os = exchange.getResponseBody()) {
