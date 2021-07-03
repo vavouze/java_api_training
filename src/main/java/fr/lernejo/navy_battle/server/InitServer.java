@@ -66,7 +66,7 @@ public class InitServer
             .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"1\", \"url\":\"http://localhost:" + this.port + "\", \"message\":\"hello\"}"))
             .build();
         client.send(requetePost, HttpResponse.BodyHandlers.ofString());
-        System.out.println((System.nanoTime() - startTime)/1000000);
+        System.out.println("execution time: " +(System.nanoTime() - startTime) /1000000+"ms");
     }
 
     public BoatList getBoatList() {
