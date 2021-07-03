@@ -12,10 +12,6 @@ public class Boat
         this.boatName = boatName;
     }
 
-    public String getBoatName() {
-        return boatName;
-    }
-
 
     public List<String> getCasesList() {
         return CasesList;

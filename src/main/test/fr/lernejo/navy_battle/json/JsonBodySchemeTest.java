@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.json;
 
 import fr.lernejo.navy_battle.json.JsonBodyScheme;
 import org.assertj.core.api.Assertions;
