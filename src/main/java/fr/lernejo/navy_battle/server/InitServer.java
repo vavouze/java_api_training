@@ -1,6 +1,5 @@
 package fr.lernejo.navy_battle.server;
 import com.sun.net.httpserver.HttpServer;
-import fr.lernejo.navy_battle.Boat;
 import fr.lernejo.navy_battle.route.FireRoute;
 import fr.lernejo.navy_battle.route.PingRoute;
 import fr.lernejo.navy_battle.route.StartRoute;
@@ -10,11 +9,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
-import java.util.logging.Logger;
 
 public class InitServer
 {
@@ -25,9 +22,6 @@ public class InitServer
     private final String[] column = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
     private final String[] line = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
-    final Logger logger
-        = Logger.getLogger(
-        InitServer.class.getName());
 
     public InitServer(int port, List<String> adversary, BoatList boatList)
     {
@@ -54,7 +48,6 @@ public class InitServer
             route.createContext(server,this);
         }
         server.start();
-        logger.info(" Server started on port "+ this.port);
     }
 
     public void sendRequest(String adversaryUrl,long startTime) throws Exception {
